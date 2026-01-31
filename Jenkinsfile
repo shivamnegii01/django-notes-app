@@ -5,9 +5,16 @@ pipeline {
 
     stages {
 
+        stage("Hello") {
+            steps {
+                script {
+                    hello()
+                }
+            }
+        }
+
         stage("Code Clone") {
             steps {
-                sh "whoami"
                 script {
                     clone(
                         "https://github.com/LondheShubham153/django-notes-app.git",
@@ -20,7 +27,7 @@ pipeline {
         stage("Code Build") {
             steps {
                 script {
-                    dockerbuild()
+                    docker_build()
                 }
             }
         }
@@ -28,7 +35,7 @@ pipeline {
         stage("Push to DockerHub") {
             steps {
                 script {
-                    dockerpush()
+                    docker_push()
                 }
             }
         }
