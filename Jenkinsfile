@@ -1,7 +1,7 @@
 @Library('shared') _
 pipeline {
 
-    agent { label 'dev-server' }
+    agent { label 'vinpd' }
 
     stages {
 
@@ -17,14 +17,14 @@ pipeline {
             steps {
                 script {
                     clone(
-                        "https://github.com/LondheShubham153/django-notes-app.git",
+                        "https://github.com/shivamnegii01/django-notes-app.git",
                         "main"
                     )
                 }
             }
         }
 
-        stage("Code Build") {
+        stage("Build") {
             steps {
                 script {
                     docker_build()
