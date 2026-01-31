@@ -1,7 +1,7 @@
 @Library('shared') _
 pipeline {
 
-    agent { label 'vinod' }
+    agent { label 'vinpd' }
 
     stages {
 
@@ -27,7 +27,10 @@ pipeline {
         stage("Build") {
             steps {
                 script {
-                    docker_build()
+                    docker_build(
+                        image: "notes-app",
+                        tag: "latest"
+                    )
                 }
             }
         }
@@ -35,7 +38,11 @@ pipeline {
         stage("Push to DockerHub") {
             steps {
                 script {
-                    docker_push()
+                    docker_push(
+                        image: "notes-app",
+                        tag: "latest",
+                        repo: "shivamnegi07"
+                    )
                 }
             }
         }
