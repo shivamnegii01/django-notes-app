@@ -3,3 +3,4 @@ services:
     image: "shivamnegi07/notes-app:latest"
     ports:
       - "8000:8000"
+
