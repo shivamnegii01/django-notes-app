@@ -7,51 +7,34 @@ pipeline {
 
         stage("Hello") {
             steps {
-                script {
-                    hello()
-                }
+                hello()
             }
         }
 
         stage("Code Clone") {
             steps {
-                script {
-                    clone(
-                        "https://github.com/shivamnegii01/django-notes-app.git",
-                        "main"
-                    )
-                }
+                clone(
+                  "https://github.com/shivamnegii01/django-notes-app.git",
+                  "main"
+                )
             }
         }
 
         stage("Build") {
             steps {
-                script {
-                    docker_build(
-                        image: "notes-app",
-                        tag: "latest"
-                    )
-                }
+                docker_build("notes-app", "latest")
             }
         }
 
         stage("Push to DockerHub") {
             steps {
-                script {
-                    docker_push(
-                        image: "notes-app",
-                        tag: "latest",
-                        repo: "shivamnegi07"
-                    )
-                }
+                docker_push("notes-app", "latest")
             }
         }
 
         stage("Deploy") {
             steps {
-                script {
-                    deploy()
-                }
+                deploy()
             }
         }
     }
